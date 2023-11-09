@@ -52,10 +52,12 @@ model/createSubscriptionProductRequest.ts
 model/createSubscriptionProductSiteRequest.ts
 model/createSubscriptionProductSitesRequest.ts
 model/feeResponse.ts
+model/feeTypeResponse.ts
 model/forbiddenError403Response.ts
 model/forbiddenError403ResponseError.ts
 model/getActiveCarts200Response.ts
 model/getCartByUserId201Response.ts
+model/getFeeTypes200Response.ts
 model/getFeesBySite200Response.ts
 model/getProductCategories200Response.ts
 model/getProductSiteRecords200Response.ts
