@@ -48,9 +48,5 @@ export interface ProductSiteResponse {
      * Organization Id
      */
     orgId: string;
-    /**
-     * Payment provider ID
-     */
-    paymentProviderId: string;
 }
 

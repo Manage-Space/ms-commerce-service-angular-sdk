@@ -9,16 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { SubscriptionProductCategoryResponse } from './subscriptionProductCategoryResponse';
 
 
-export interface UpdateProductCategoryRequest { 
-    /**
-     * The name of the product category.
-     */
-    name?: string;
-    /**
-     * The display order of the product category.
-     */
-    displayOrder?: number;
+export interface GetSubscriptionProductCategories200Response { 
+    data?: Array<SubscriptionProductCategoryResponse>;
+    success?: boolean;
+    error?: object;
 }
 

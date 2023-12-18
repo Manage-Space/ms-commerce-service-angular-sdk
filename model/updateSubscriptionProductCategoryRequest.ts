@@ -9,21 +9,16 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ProductItemRequest } from './productItemRequest';
 
 
-export interface CreateProductCategoryRequest { 
+export interface UpdateSubscriptionProductCategoryRequest { 
     /**
-     * The name of the product category.
+     * The name of the subscription product category.
      */
-    name: string;
+    name?: string;
     /**
-     * The display order of the product category.
+     * The display order of the subscription product category.
      */
     displayOrder?: number;
-    /**
-     * Products to be created within the category.
-     */
-    items?: Array<ProductItemRequest>;
 }
 

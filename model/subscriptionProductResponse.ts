@@ -9,6 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { SubscriptionProductMetaData } from './subscriptionProductMetaData';
 
 
 export interface SubscriptionProductResponse { 
@@ -29,13 +30,10 @@ export interface SubscriptionProductResponse {
      */
     imagePath: string | null;
     /**
-     * Product Category Id
+     * Subscription Product Category Id
      */
-    productCategoryId: string;
-    /**
-     * Meta Data
-     */
-    metaData: object;
+    subscriptionProductCategoryId: string;
+    metaData: SubscriptionProductMetaData;
     /**
      * Time of creation
      */

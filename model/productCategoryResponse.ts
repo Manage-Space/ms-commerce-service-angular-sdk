@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 import { ProductResponse } from './productResponse';
-import { SubscriptionProductResponse } from './subscriptionProductResponse';
 
 
 export interface ProductCategoryResponse { 
@@ -34,9 +33,5 @@ export interface ProductCategoryResponse {
      * The products in this product category.
      */
     items: Array<ProductResponse>;
-    /**
-     * The subscription products in this product category.
-     */
-    subscriptionItems: Array<SubscriptionProductResponse>;
 }
 

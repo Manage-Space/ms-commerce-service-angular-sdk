@@ -19,13 +19,7 @@ import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 // @ts-ignore
-import { AddLeaseItemsRequest } from '../model/addLeaseItemsRequest';
-// @ts-ignore
-import { AddProductItemsRequest } from '../model/addProductItemsRequest';
-// @ts-ignore
 import { BadRequestError400Response } from '../model/badRequestError400Response';
-// @ts-ignore
-import { CheckoutRequest } from '../model/checkoutRequest';
 // @ts-ignore
 import { CreateActiveCartRequest } from '../model/createActiveCartRequest';
 // @ts-ignore
@@ -36,8 +30,6 @@ import { CreateCartFeesRequest } from '../model/createCartFeesRequest';
 import { CreateCartItems201Response } from '../model/createCartItems201Response';
 // @ts-ignore
 import { CreateCartItemsRequest } from '../model/createCartItemsRequest';
-// @ts-ignore
-import { CreateCartRequest } from '../model/createCartRequest';
 // @ts-ignore
 import { CreateCartSubscriptionItems201Response } from '../model/createCartSubscriptionItems201Response';
 // @ts-ignore
@@ -59,6 +51,10 @@ import { CreateProductSitesRequest } from '../model/createProductSitesRequest';
 // @ts-ignore
 import { CreateSubscriptionProduct201Response } from '../model/createSubscriptionProduct201Response';
 // @ts-ignore
+import { CreateSubscriptionProductCategoriesRequest } from '../model/createSubscriptionProductCategoriesRequest';
+// @ts-ignore
+import { CreateSubscriptionProductCategoryRequest } from '../model/createSubscriptionProductCategoryRequest';
+// @ts-ignore
 import { CreateSubscriptionProductRequest } from '../model/createSubscriptionProductRequest';
 // @ts-ignore
 import { CreateSubscriptionProductSiteRequest } from '../model/createSubscriptionProductSiteRequest';
@@ -69,8 +65,6 @@ import { ForbiddenError403Response } from '../model/forbiddenError403Response';
 // @ts-ignore
 import { GetActiveCarts200Response } from '../model/getActiveCarts200Response';
 // @ts-ignore
-import { GetCartByUserId201Response } from '../model/getCartByUserId201Response';
-// @ts-ignore
 import { GetFeeTypes200Response } from '../model/getFeeTypes200Response';
 // @ts-ignore
 import { GetFeesBySite200Response } from '../model/getFeesBySite200Response';
@@ -78,6 +72,8 @@ import { GetFeesBySite200Response } from '../model/getFeesBySite200Response';
 import { GetProductCategories200Response } from '../model/getProductCategories200Response';
 // @ts-ignore
 import { GetProductSiteRecords200Response } from '../model/getProductSiteRecords200Response';
+// @ts-ignore
+import { GetSubscriptionProductCategories200Response } from '../model/getSubscriptionProductCategories200Response';
 // @ts-ignore
 import { GetSubscriptionProductSiteRecords200Response } from '../model/getSubscriptionProductSiteRecords200Response';
 // @ts-ignore
@@ -94,6 +90,8 @@ import { UpdateProductCategoryRequest } from '../model/updateProductCategoryRequ
 import { UpdateProductRequest } from '../model/updateProductRequest';
 // @ts-ignore
 import { UpdateProductSiteRequest } from '../model/updateProductSiteRequest';
+// @ts-ignore
+import { UpdateSubscriptionProductCategoryRequest } from '../model/updateSubscriptionProductCategoryRequest';
 // @ts-ignore
 import { UpdateSubscriptionProductRequest } from '../model/updateSubscriptionProductRequest';
 // @ts-ignore
@@ -167,174 +165,6 @@ export class DefaultService {
             throw Error("key may not be null if value is not object or array");
         }
         return httpParams;
-    }
-
-    /**
-     * Add Lease Items to Cart
-     * Add Lease Items to already existing cart.
-     * @param orgId The identifier of the organization.
-     * @param cartId The identifier of the shopping cart.
-     * @param addLeaseItemsRequest 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public addLeaseItemsToCart(orgId: string, cartId: string, addLeaseItemsRequest: AddLeaseItemsRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<GetCartByUserId201Response>;
-    public addLeaseItemsToCart(orgId: string, cartId: string, addLeaseItemsRequest: AddLeaseItemsRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpResponse<GetCartByUserId201Response>>;
-    public addLeaseItemsToCart(orgId: string, cartId: string, addLeaseItemsRequest: AddLeaseItemsRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpEvent<GetCartByUserId201Response>>;
-    public addLeaseItemsToCart(orgId: string, cartId: string, addLeaseItemsRequest: AddLeaseItemsRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<any> {
-        if (orgId === null || orgId === undefined) {
-            throw new Error('Required parameter orgId was null or undefined when calling addLeaseItemsToCart.');
-        }
-        if (cartId === null || cartId === undefined) {
-            throw new Error('Required parameter cartId was null or undefined when calling addLeaseItemsToCart.');
-        }
-        if (addLeaseItemsRequest === null || addLeaseItemsRequest === undefined) {
-            throw new Error('Required parameter addLeaseItemsRequest was null or undefined when calling addLeaseItemsToCart.');
-        }
-
-        let localVarHeaders = this.defaultHeaders;
-
-        let localVarCredential: string | undefined;
-        // authentication (bearer) required
-        localVarCredential = this.configuration.lookupCredential('bearer');
-        if (localVarCredential) {
-            localVarHeaders = localVarHeaders.set('Authorization', 'Bearer ' + localVarCredential);
-        }
-
-        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (localVarHttpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json;v=1'
-            ];
-            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (localVarHttpHeaderAcceptSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
-        }
-
-        let localVarHttpContext: HttpContext | undefined = options && options.context;
-        if (localVarHttpContext === undefined) {
-            localVarHttpContext = new HttpContext();
-        }
-
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json'
-        ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
-        }
-
-        let responseType_: 'text' | 'json' | 'blob' = 'json';
-        if (localVarHttpHeaderAcceptSelected) {
-            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
-                responseType_ = 'text';
-            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
-                responseType_ = 'json';
-            } else {
-                responseType_ = 'blob';
-            }
-        }
-
-        let localVarPath = `/commerce/orgs/${this.configuration.encodeParam({name: "orgId", value: orgId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/carts/${this.configuration.encodeParam({name: "cartId", value: cartId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/lease-items`;
-        return this.httpClient.request<GetCartByUserId201Response>('post', `${this.configuration.basePath}${localVarPath}`,
-            {
-                context: localVarHttpContext,
-                body: addLeaseItemsRequest,
-                responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
-                headers: localVarHeaders,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Checkout.
-     * Checkout with the items in the cart.
-     * @param orgId The identifier of the organization.
-     * @param cartId The identifier of the shopping cart.
-     * @param checkoutRequest 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public checkout(orgId: string, cartId: string, checkoutRequest: CheckoutRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<GetCartByUserId201Response>;
-    public checkout(orgId: string, cartId: string, checkoutRequest: CheckoutRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpResponse<GetCartByUserId201Response>>;
-    public checkout(orgId: string, cartId: string, checkoutRequest: CheckoutRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpEvent<GetCartByUserId201Response>>;
-    public checkout(orgId: string, cartId: string, checkoutRequest: CheckoutRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<any> {
-        if (orgId === null || orgId === undefined) {
-            throw new Error('Required parameter orgId was null or undefined when calling checkout.');
-        }
-        if (cartId === null || cartId === undefined) {
-            throw new Error('Required parameter cartId was null or undefined when calling checkout.');
-        }
-        if (checkoutRequest === null || checkoutRequest === undefined) {
-            throw new Error('Required parameter checkoutRequest was null or undefined when calling checkout.');
-        }
-
-        let localVarHeaders = this.defaultHeaders;
-
-        let localVarCredential: string | undefined;
-        // authentication (bearer) required
-        localVarCredential = this.configuration.lookupCredential('bearer');
-        if (localVarCredential) {
-            localVarHeaders = localVarHeaders.set('Authorization', 'Bearer ' + localVarCredential);
-        }
-
-        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (localVarHttpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json;v=1'
-            ];
-            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (localVarHttpHeaderAcceptSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
-        }
-
-        let localVarHttpContext: HttpContext | undefined = options && options.context;
-        if (localVarHttpContext === undefined) {
-            localVarHttpContext = new HttpContext();
-        }
-
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json'
-        ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
-        }
-
-        let responseType_: 'text' | 'json' | 'blob' = 'json';
-        if (localVarHttpHeaderAcceptSelected) {
-            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
-                responseType_ = 'text';
-            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
-                responseType_ = 'json';
-            } else {
-                responseType_ = 'blob';
-            }
-        }
-
-        let localVarPath = `/commerce/orgs/${this.configuration.encodeParam({name: "orgId", value: orgId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/carts/${this.configuration.encodeParam({name: "cartId", value: cartId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/checkout`;
-        return this.httpClient.request<GetCartByUserId201Response>('post', `${this.configuration.basePath}${localVarPath}`,
-            {
-                context: localVarHttpContext,
-                body: checkoutRequest,
-                responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
-                headers: localVarHeaders,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
     }
 
     /**
@@ -412,86 +242,6 @@ export class DefaultService {
             {
                 context: localVarHttpContext,
                 body: createActiveCartRequest,
-                responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
-                headers: localVarHeaders,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Create cart
-     * Creates a shopping cart.
-     * @param orgId The identifier of the organization.
-     * @param createCartRequest 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public createCart(orgId: string, createCartRequest: CreateCartRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<GetCartByUserId201Response>;
-    public createCart(orgId: string, createCartRequest: CreateCartRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpResponse<GetCartByUserId201Response>>;
-    public createCart(orgId: string, createCartRequest: CreateCartRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpEvent<GetCartByUserId201Response>>;
-    public createCart(orgId: string, createCartRequest: CreateCartRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<any> {
-        if (orgId === null || orgId === undefined) {
-            throw new Error('Required parameter orgId was null or undefined when calling createCart.');
-        }
-        if (createCartRequest === null || createCartRequest === undefined) {
-            throw new Error('Required parameter createCartRequest was null or undefined when calling createCart.');
-        }
-
-        let localVarHeaders = this.defaultHeaders;
-
-        let localVarCredential: string | undefined;
-        // authentication (bearer) required
-        localVarCredential = this.configuration.lookupCredential('bearer');
-        if (localVarCredential) {
-            localVarHeaders = localVarHeaders.set('Authorization', 'Bearer ' + localVarCredential);
-        }
-
-        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (localVarHttpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json;v=1'
-            ];
-            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (localVarHttpHeaderAcceptSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
-        }
-
-        let localVarHttpContext: HttpContext | undefined = options && options.context;
-        if (localVarHttpContext === undefined) {
-            localVarHttpContext = new HttpContext();
-        }
-
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json'
-        ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
-        }
-
-        let responseType_: 'text' | 'json' | 'blob' = 'json';
-        if (localVarHttpHeaderAcceptSelected) {
-            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
-                responseType_ = 'text';
-            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
-                responseType_ = 'json';
-            } else {
-                responseType_ = 'blob';
-            }
-        }
-
-        let localVarPath = `/commerce/orgs/${this.configuration.encodeParam({name: "orgId", value: orgId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/carts`;
-        return this.httpClient.request<GetCartByUserId201Response>('post', `${this.configuration.basePath}${localVarPath}`,
-            {
-                context: localVarHttpContext,
-                body: createCartRequest,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
@@ -1416,6 +1166,166 @@ export class DefaultService {
     }
 
     /**
+     * Create multiple categories with products
+     * Create multiple categories with products
+     * @param orgId The identifier of the organization that the subscription product category belongs to.
+     * @param createSubscriptionProductCategoriesRequest 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public createSubscriptionProductCategoriesBatch(orgId: string, createSubscriptionProductCategoriesRequest: CreateSubscriptionProductCategoriesRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<GetSubscriptionProductCategories200Response>;
+    public createSubscriptionProductCategoriesBatch(orgId: string, createSubscriptionProductCategoriesRequest: CreateSubscriptionProductCategoriesRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpResponse<GetSubscriptionProductCategories200Response>>;
+    public createSubscriptionProductCategoriesBatch(orgId: string, createSubscriptionProductCategoriesRequest: CreateSubscriptionProductCategoriesRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpEvent<GetSubscriptionProductCategories200Response>>;
+    public createSubscriptionProductCategoriesBatch(orgId: string, createSubscriptionProductCategoriesRequest: CreateSubscriptionProductCategoriesRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<any> {
+        if (orgId === null || orgId === undefined) {
+            throw new Error('Required parameter orgId was null or undefined when calling createSubscriptionProductCategoriesBatch.');
+        }
+        if (createSubscriptionProductCategoriesRequest === null || createSubscriptionProductCategoriesRequest === undefined) {
+            throw new Error('Required parameter createSubscriptionProductCategoriesRequest was null or undefined when calling createSubscriptionProductCategoriesBatch.');
+        }
+
+        let localVarHeaders = this.defaultHeaders;
+
+        let localVarCredential: string | undefined;
+        // authentication (bearer) required
+        localVarCredential = this.configuration.lookupCredential('bearer');
+        if (localVarCredential) {
+            localVarHeaders = localVarHeaders.set('Authorization', 'Bearer ' + localVarCredential);
+        }
+
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json;v=1'
+            ];
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
+        }
+
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
+        }
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        let localVarPath = `/commerce/orgs/${this.configuration.encodeParam({name: "orgId", value: orgId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/subscription-product-categories/batch`;
+        return this.httpClient.request<GetSubscriptionProductCategories200Response>('post', `${this.configuration.basePath}${localVarPath}`,
+            {
+                context: localVarHttpContext,
+                body: createSubscriptionProductCategoriesRequest,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Create Subscription Product Category
+     * Create a new subscription product category for an org and site
+     * @param orgId The identifier of the organization that the subscription product category belongs to.
+     * @param createSubscriptionProductCategoryRequest 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public createSubscriptionProductCategory(orgId: string, createSubscriptionProductCategoryRequest: CreateSubscriptionProductCategoryRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<GetSubscriptionProductCategories200Response>;
+    public createSubscriptionProductCategory(orgId: string, createSubscriptionProductCategoryRequest: CreateSubscriptionProductCategoryRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpResponse<GetSubscriptionProductCategories200Response>>;
+    public createSubscriptionProductCategory(orgId: string, createSubscriptionProductCategoryRequest: CreateSubscriptionProductCategoryRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpEvent<GetSubscriptionProductCategories200Response>>;
+    public createSubscriptionProductCategory(orgId: string, createSubscriptionProductCategoryRequest: CreateSubscriptionProductCategoryRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<any> {
+        if (orgId === null || orgId === undefined) {
+            throw new Error('Required parameter orgId was null or undefined when calling createSubscriptionProductCategory.');
+        }
+        if (createSubscriptionProductCategoryRequest === null || createSubscriptionProductCategoryRequest === undefined) {
+            throw new Error('Required parameter createSubscriptionProductCategoryRequest was null or undefined when calling createSubscriptionProductCategory.');
+        }
+
+        let localVarHeaders = this.defaultHeaders;
+
+        let localVarCredential: string | undefined;
+        // authentication (bearer) required
+        localVarCredential = this.configuration.lookupCredential('bearer');
+        if (localVarCredential) {
+            localVarHeaders = localVarHeaders.set('Authorization', 'Bearer ' + localVarCredential);
+        }
+
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json;v=1'
+            ];
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
+        }
+
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
+        }
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        let localVarPath = `/commerce/orgs/${this.configuration.encodeParam({name: "orgId", value: orgId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/subscription-product-categories`;
+        return this.httpClient.request<GetSubscriptionProductCategories200Response>('post', `${this.configuration.basePath}${localVarPath}`,
+            {
+                context: localVarHttpContext,
+                body: createSubscriptionProductCategoryRequest,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Create an association between subscription product definition and a site along with details such as, price, etc.
      * @param orgId The identifier of the organization.
      * @param siteId The identifier of the site that the subscription product category belongs to.
@@ -1716,153 +1626,6 @@ export class DefaultService {
         return this.httpClient.request<GetActiveCarts200Response>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
-                headers: localVarHeaders,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Get cart
-     * Get a shopping cart by ID.
-     * @param orgId The identifier of the organization.
-     * @param cartId The identifier of the shopping cart.
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getCart(orgId: string, cartId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<GetCartByUserId201Response>;
-    public getCart(orgId: string, cartId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpResponse<GetCartByUserId201Response>>;
-    public getCart(orgId: string, cartId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpEvent<GetCartByUserId201Response>>;
-    public getCart(orgId: string, cartId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<any> {
-        if (orgId === null || orgId === undefined) {
-            throw new Error('Required parameter orgId was null or undefined when calling getCart.');
-        }
-        if (cartId === null || cartId === undefined) {
-            throw new Error('Required parameter cartId was null or undefined when calling getCart.');
-        }
-
-        let localVarHeaders = this.defaultHeaders;
-
-        let localVarCredential: string | undefined;
-        // authentication (bearer) required
-        localVarCredential = this.configuration.lookupCredential('bearer');
-        if (localVarCredential) {
-            localVarHeaders = localVarHeaders.set('Authorization', 'Bearer ' + localVarCredential);
-        }
-
-        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (localVarHttpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json;v=1'
-            ];
-            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (localVarHttpHeaderAcceptSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
-        }
-
-        let localVarHttpContext: HttpContext | undefined = options && options.context;
-        if (localVarHttpContext === undefined) {
-            localVarHttpContext = new HttpContext();
-        }
-
-
-        let responseType_: 'text' | 'json' | 'blob' = 'json';
-        if (localVarHttpHeaderAcceptSelected) {
-            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
-                responseType_ = 'text';
-            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
-                responseType_ = 'json';
-            } else {
-                responseType_ = 'blob';
-            }
-        }
-
-        let localVarPath = `/commerce/orgs/${this.configuration.encodeParam({name: "orgId", value: orgId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/carts/${this.configuration.encodeParam({name: "cartId", value: cartId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<GetCartByUserId201Response>('get', `${this.configuration.basePath}${localVarPath}`,
-            {
-                context: localVarHttpContext,
-                responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
-                headers: localVarHeaders,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Get cart
-     * Get a shopping cart by userId.
-     * @param orgId The identifier of the organization.
-     * @param userId User Id
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getCartByUserId(orgId: string, userId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<GetCartByUserId201Response>;
-    public getCartByUserId(orgId: string, userId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpResponse<GetCartByUserId201Response>>;
-    public getCartByUserId(orgId: string, userId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpEvent<GetCartByUserId201Response>>;
-    public getCartByUserId(orgId: string, userId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<any> {
-        if (orgId === null || orgId === undefined) {
-            throw new Error('Required parameter orgId was null or undefined when calling getCartByUserId.');
-        }
-        if (userId === null || userId === undefined) {
-            throw new Error('Required parameter userId was null or undefined when calling getCartByUserId.');
-        }
-
-        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
-        if (userId !== undefined && userId !== null) {
-          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-            <any>userId, 'userId');
-        }
-
-        let localVarHeaders = this.defaultHeaders;
-
-        let localVarCredential: string | undefined;
-        // authentication (bearer) required
-        localVarCredential = this.configuration.lookupCredential('bearer');
-        if (localVarCredential) {
-            localVarHeaders = localVarHeaders.set('Authorization', 'Bearer ' + localVarCredential);
-        }
-
-        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (localVarHttpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json;v=1'
-            ];
-            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (localVarHttpHeaderAcceptSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
-        }
-
-        let localVarHttpContext: HttpContext | undefined = options && options.context;
-        if (localVarHttpContext === undefined) {
-            localVarHttpContext = new HttpContext();
-        }
-
-
-        let responseType_: 'text' | 'json' | 'blob' = 'json';
-        if (localVarHttpHeaderAcceptSelected) {
-            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
-                responseType_ = 'text';
-            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
-                responseType_ = 'json';
-            } else {
-                responseType_ = 'blob';
-            }
-        }
-
-        let localVarPath = `/commerce/orgs/${this.configuration.encodeParam({name: "orgId", value: orgId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/carts`;
-        return this.httpClient.request<GetCartByUserId201Response>('get', `${this.configuration.basePath}${localVarPath}`,
-            {
-                context: localVarHttpContext,
-                params: localVarQueryParameters,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
@@ -2453,6 +2216,155 @@ export class DefaultService {
     }
 
     /**
+     * Get Subscription Product Categories
+     * Retrieve subscription subscription product categories for an org and site
+     * @param orgId The identifier of the organization that the subscription product category belongs to.
+     * @param offset The offset of the first record to return (0-indexed).
+     * @param limit The maximum number of records to return per page.
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getSubscriptionProductCategories(orgId: string, offset?: number, limit?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<GetSubscriptionProductCategories200Response>;
+    public getSubscriptionProductCategories(orgId: string, offset?: number, limit?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpResponse<GetSubscriptionProductCategories200Response>>;
+    public getSubscriptionProductCategories(orgId: string, offset?: number, limit?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpEvent<GetSubscriptionProductCategories200Response>>;
+    public getSubscriptionProductCategories(orgId: string, offset?: number, limit?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<any> {
+        if (orgId === null || orgId === undefined) {
+            throw new Error('Required parameter orgId was null or undefined when calling getSubscriptionProductCategories.');
+        }
+
+        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
+        if (offset !== undefined && offset !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>offset, 'offset');
+        }
+        if (limit !== undefined && limit !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>limit, 'limit');
+        }
+
+        let localVarHeaders = this.defaultHeaders;
+
+        let localVarCredential: string | undefined;
+        // authentication (bearer) required
+        localVarCredential = this.configuration.lookupCredential('bearer');
+        if (localVarCredential) {
+            localVarHeaders = localVarHeaders.set('Authorization', 'Bearer ' + localVarCredential);
+        }
+
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json;v=1'
+            ];
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
+        }
+
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        let localVarPath = `/commerce/orgs/${this.configuration.encodeParam({name: "orgId", value: orgId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/subscription-product-categories`;
+        return this.httpClient.request<GetSubscriptionProductCategories200Response>('get', `${this.configuration.basePath}${localVarPath}`,
+            {
+                context: localVarHttpContext,
+                params: localVarQueryParameters,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Get Subscription Product Category
+     * Retrieve subscription product category by ID
+     * @param orgId The identifier of the organization that the subscription product category belongs to.
+     * @param subscriptionProductCategoryId The identifier of the subscription product category.
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getSubscriptionProductCategory(orgId: string, subscriptionProductCategoryId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<GetSubscriptionProductCategories200Response>;
+    public getSubscriptionProductCategory(orgId: string, subscriptionProductCategoryId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpResponse<GetSubscriptionProductCategories200Response>>;
+    public getSubscriptionProductCategory(orgId: string, subscriptionProductCategoryId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpEvent<GetSubscriptionProductCategories200Response>>;
+    public getSubscriptionProductCategory(orgId: string, subscriptionProductCategoryId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<any> {
+        if (orgId === null || orgId === undefined) {
+            throw new Error('Required parameter orgId was null or undefined when calling getSubscriptionProductCategory.');
+        }
+        if (subscriptionProductCategoryId === null || subscriptionProductCategoryId === undefined) {
+            throw new Error('Required parameter subscriptionProductCategoryId was null or undefined when calling getSubscriptionProductCategory.');
+        }
+
+        let localVarHeaders = this.defaultHeaders;
+
+        let localVarCredential: string | undefined;
+        // authentication (bearer) required
+        localVarCredential = this.configuration.lookupCredential('bearer');
+        if (localVarCredential) {
+            localVarHeaders = localVarHeaders.set('Authorization', 'Bearer ' + localVarCredential);
+        }
+
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json;v=1'
+            ];
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
+        }
+
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        let localVarPath = `/commerce/orgs/${this.configuration.encodeParam({name: "orgId", value: orgId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/subscription-product-categories/${this.configuration.encodeParam({name: "subscriptionProductCategoryId", value: subscriptionProductCategoryId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
+        return this.httpClient.request<GetSubscriptionProductCategories200Response>('get', `${this.configuration.basePath}${localVarPath}`,
+            {
+                context: localVarHttpContext,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Get subscription product site record along with its details(stock, price, currency, etc).
      * @param orgId The identifier of the organization.
      * @param siteId The identifier of the site that the subscription product category belongs to.
@@ -2529,24 +2441,24 @@ export class DefaultService {
      * Get a subscription product site items for along with their details(stock, price, currency, etc).
      * @param orgId The identifier of the organization.
      * @param siteId The identifier of the site that the subscription product category belongs to.
-     * @param productCategoryId The identifier of the product category.
+     * @param subscriptionProductCategoryId The identifier of the subscription product category.
      * @param offset The offset of the first record to return (0-indexed).
      * @param limit The maximum number of records to return per page.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getSubscriptionProductSiteRecords(orgId: string, siteId: string, productCategoryId: string, offset?: number, limit?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<GetSubscriptionProductSiteRecords200Response>;
-    public getSubscriptionProductSiteRecords(orgId: string, siteId: string, productCategoryId: string, offset?: number, limit?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpResponse<GetSubscriptionProductSiteRecords200Response>>;
-    public getSubscriptionProductSiteRecords(orgId: string, siteId: string, productCategoryId: string, offset?: number, limit?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpEvent<GetSubscriptionProductSiteRecords200Response>>;
-    public getSubscriptionProductSiteRecords(orgId: string, siteId: string, productCategoryId: string, offset?: number, limit?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<any> {
+    public getSubscriptionProductSiteRecords(orgId: string, siteId: string, subscriptionProductCategoryId: string, offset?: number, limit?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<GetSubscriptionProductSiteRecords200Response>;
+    public getSubscriptionProductSiteRecords(orgId: string, siteId: string, subscriptionProductCategoryId: string, offset?: number, limit?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpResponse<GetSubscriptionProductSiteRecords200Response>>;
+    public getSubscriptionProductSiteRecords(orgId: string, siteId: string, subscriptionProductCategoryId: string, offset?: number, limit?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpEvent<GetSubscriptionProductSiteRecords200Response>>;
+    public getSubscriptionProductSiteRecords(orgId: string, siteId: string, subscriptionProductCategoryId: string, offset?: number, limit?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<any> {
         if (orgId === null || orgId === undefined) {
             throw new Error('Required parameter orgId was null or undefined when calling getSubscriptionProductSiteRecords.');
         }
         if (siteId === null || siteId === undefined) {
             throw new Error('Required parameter siteId was null or undefined when calling getSubscriptionProductSiteRecords.');
         }
-        if (productCategoryId === null || productCategoryId === undefined) {
-            throw new Error('Required parameter productCategoryId was null or undefined when calling getSubscriptionProductSiteRecords.');
+        if (subscriptionProductCategoryId === null || subscriptionProductCategoryId === undefined) {
+            throw new Error('Required parameter subscriptionProductCategoryId was null or undefined when calling getSubscriptionProductSiteRecords.');
         }
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
@@ -2558,9 +2470,9 @@ export class DefaultService {
           localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
             <any>limit, 'limit');
         }
-        if (productCategoryId !== undefined && productCategoryId !== null) {
+        if (subscriptionProductCategoryId !== undefined && subscriptionProductCategoryId !== null) {
           localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-            <any>productCategoryId, 'productCategoryId');
+            <any>subscriptionProductCategoryId, 'subscriptionProductCategoryId');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -2850,238 +2762,6 @@ export class DefaultService {
     }
 
     /**
-     * Remove lease item for cart.
-     * Remove lease item for cart by PK.
-     * @param orgId The identifier of the organization.
-     * @param cartId The identifier of the shopping cart.
-     * @param leaseItemId The identifier of the lease item associated with the shopping cart.
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public removeLeaseItem(orgId: string, cartId: string, leaseItemId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<GetCartByUserId201Response>;
-    public removeLeaseItem(orgId: string, cartId: string, leaseItemId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpResponse<GetCartByUserId201Response>>;
-    public removeLeaseItem(orgId: string, cartId: string, leaseItemId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpEvent<GetCartByUserId201Response>>;
-    public removeLeaseItem(orgId: string, cartId: string, leaseItemId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<any> {
-        if (orgId === null || orgId === undefined) {
-            throw new Error('Required parameter orgId was null or undefined when calling removeLeaseItem.');
-        }
-        if (cartId === null || cartId === undefined) {
-            throw new Error('Required parameter cartId was null or undefined when calling removeLeaseItem.');
-        }
-        if (leaseItemId === null || leaseItemId === undefined) {
-            throw new Error('Required parameter leaseItemId was null or undefined when calling removeLeaseItem.');
-        }
-
-        let localVarHeaders = this.defaultHeaders;
-
-        let localVarCredential: string | undefined;
-        // authentication (bearer) required
-        localVarCredential = this.configuration.lookupCredential('bearer');
-        if (localVarCredential) {
-            localVarHeaders = localVarHeaders.set('Authorization', 'Bearer ' + localVarCredential);
-        }
-
-        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (localVarHttpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json;v=1'
-            ];
-            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (localVarHttpHeaderAcceptSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
-        }
-
-        let localVarHttpContext: HttpContext | undefined = options && options.context;
-        if (localVarHttpContext === undefined) {
-            localVarHttpContext = new HttpContext();
-        }
-
-
-        let responseType_: 'text' | 'json' | 'blob' = 'json';
-        if (localVarHttpHeaderAcceptSelected) {
-            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
-                responseType_ = 'text';
-            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
-                responseType_ = 'json';
-            } else {
-                responseType_ = 'blob';
-            }
-        }
-
-        let localVarPath = `/commerce/orgs/${this.configuration.encodeParam({name: "orgId", value: orgId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/carts/${this.configuration.encodeParam({name: "cartId", value: cartId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/lease-items/${this.configuration.encodeParam({name: "leaseItemId", value: leaseItemId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<GetCartByUserId201Response>('delete', `${this.configuration.basePath}${localVarPath}`,
-            {
-                context: localVarHttpContext,
-                responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
-                headers: localVarHeaders,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Remove product item for cart.
-     * Remove product item for cart by PK.
-     * @param orgId The identifier of the organization.
-     * @param cartId The identifier of the shopping cart.
-     * @param productItemId The identifier of the product item associated with the shopping cart.
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public removeProductItem(orgId: string, cartId: string, productItemId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<GetCartByUserId201Response>;
-    public removeProductItem(orgId: string, cartId: string, productItemId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpResponse<GetCartByUserId201Response>>;
-    public removeProductItem(orgId: string, cartId: string, productItemId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpEvent<GetCartByUserId201Response>>;
-    public removeProductItem(orgId: string, cartId: string, productItemId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<any> {
-        if (orgId === null || orgId === undefined) {
-            throw new Error('Required parameter orgId was null or undefined when calling removeProductItem.');
-        }
-        if (cartId === null || cartId === undefined) {
-            throw new Error('Required parameter cartId was null or undefined when calling removeProductItem.');
-        }
-        if (productItemId === null || productItemId === undefined) {
-            throw new Error('Required parameter productItemId was null or undefined when calling removeProductItem.');
-        }
-
-        let localVarHeaders = this.defaultHeaders;
-
-        let localVarCredential: string | undefined;
-        // authentication (bearer) required
-        localVarCredential = this.configuration.lookupCredential('bearer');
-        if (localVarCredential) {
-            localVarHeaders = localVarHeaders.set('Authorization', 'Bearer ' + localVarCredential);
-        }
-
-        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (localVarHttpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json;v=1'
-            ];
-            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (localVarHttpHeaderAcceptSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
-        }
-
-        let localVarHttpContext: HttpContext | undefined = options && options.context;
-        if (localVarHttpContext === undefined) {
-            localVarHttpContext = new HttpContext();
-        }
-
-
-        let responseType_: 'text' | 'json' | 'blob' = 'json';
-        if (localVarHttpHeaderAcceptSelected) {
-            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
-                responseType_ = 'text';
-            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
-                responseType_ = 'json';
-            } else {
-                responseType_ = 'blob';
-            }
-        }
-
-        let localVarPath = `/commerce/orgs/${this.configuration.encodeParam({name: "orgId", value: orgId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/carts/${this.configuration.encodeParam({name: "cartId", value: cartId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/items/${this.configuration.encodeParam({name: "productItemId", value: productItemId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<GetCartByUserId201Response>('delete', `${this.configuration.basePath}${localVarPath}`,
-            {
-                context: localVarHttpContext,
-                responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
-                headers: localVarHeaders,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Update cart.
-     * Updated a shopping cart (with attributes such as accountId, paymentProviderId, etc).
-     * @param orgId The identifier of the organization.
-     * @param cartId The identifier of the shopping cart.
-     * @param createCartRequest 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public updateCart(orgId: string, cartId: string, createCartRequest: CreateCartRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<GetCartByUserId201Response>;
-    public updateCart(orgId: string, cartId: string, createCartRequest: CreateCartRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpResponse<GetCartByUserId201Response>>;
-    public updateCart(orgId: string, cartId: string, createCartRequest: CreateCartRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpEvent<GetCartByUserId201Response>>;
-    public updateCart(orgId: string, cartId: string, createCartRequest: CreateCartRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<any> {
-        if (orgId === null || orgId === undefined) {
-            throw new Error('Required parameter orgId was null or undefined when calling updateCart.');
-        }
-        if (cartId === null || cartId === undefined) {
-            throw new Error('Required parameter cartId was null or undefined when calling updateCart.');
-        }
-        if (createCartRequest === null || createCartRequest === undefined) {
-            throw new Error('Required parameter createCartRequest was null or undefined when calling updateCart.');
-        }
-
-        let localVarHeaders = this.defaultHeaders;
-
-        let localVarCredential: string | undefined;
-        // authentication (bearer) required
-        localVarCredential = this.configuration.lookupCredential('bearer');
-        if (localVarCredential) {
-            localVarHeaders = localVarHeaders.set('Authorization', 'Bearer ' + localVarCredential);
-        }
-
-        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (localVarHttpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json;v=1'
-            ];
-            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (localVarHttpHeaderAcceptSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
-        }
-
-        let localVarHttpContext: HttpContext | undefined = options && options.context;
-        if (localVarHttpContext === undefined) {
-            localVarHttpContext = new HttpContext();
-        }
-
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json'
-        ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
-        }
-
-        let responseType_: 'text' | 'json' | 'blob' = 'json';
-        if (localVarHttpHeaderAcceptSelected) {
-            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
-                responseType_ = 'text';
-            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
-                responseType_ = 'json';
-            } else {
-                responseType_ = 'blob';
-            }
-        }
-
-        let localVarPath = `/commerce/orgs/${this.configuration.encodeParam({name: "orgId", value: orgId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/carts/${this.configuration.encodeParam({name: "cartId", value: cartId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<GetCartByUserId201Response>('put', `${this.configuration.basePath}${localVarPath}`,
-            {
-                context: localVarHttpContext,
-                body: createCartRequest,
-                responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
-                headers: localVarHeaders,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
      * Update a organization fee
      * Update a organization level fee.
      * @param orgId The Organization ID
@@ -3324,90 +3004,6 @@ export class DefaultService {
             {
                 context: localVarHttpContext,
                 body: updateProductCategoryRequest,
-                responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
-                headers: localVarHeaders,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Add Product Items to Cart
-     * Add Product Items to already existing cart.
-     * @param orgId The identifier of the organization.
-     * @param cartId The identifier of the shopping cart.
-     * @param addProductItemsRequest 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public updateProductItems(orgId: string, cartId: string, addProductItemsRequest: AddProductItemsRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<GetCartByUserId201Response>;
-    public updateProductItems(orgId: string, cartId: string, addProductItemsRequest: AddProductItemsRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpResponse<GetCartByUserId201Response>>;
-    public updateProductItems(orgId: string, cartId: string, addProductItemsRequest: AddProductItemsRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpEvent<GetCartByUserId201Response>>;
-    public updateProductItems(orgId: string, cartId: string, addProductItemsRequest: AddProductItemsRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<any> {
-        if (orgId === null || orgId === undefined) {
-            throw new Error('Required parameter orgId was null or undefined when calling updateProductItems.');
-        }
-        if (cartId === null || cartId === undefined) {
-            throw new Error('Required parameter cartId was null or undefined when calling updateProductItems.');
-        }
-        if (addProductItemsRequest === null || addProductItemsRequest === undefined) {
-            throw new Error('Required parameter addProductItemsRequest was null or undefined when calling updateProductItems.');
-        }
-
-        let localVarHeaders = this.defaultHeaders;
-
-        let localVarCredential: string | undefined;
-        // authentication (bearer) required
-        localVarCredential = this.configuration.lookupCredential('bearer');
-        if (localVarCredential) {
-            localVarHeaders = localVarHeaders.set('Authorization', 'Bearer ' + localVarCredential);
-        }
-
-        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (localVarHttpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json;v=1'
-            ];
-            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (localVarHttpHeaderAcceptSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
-        }
-
-        let localVarHttpContext: HttpContext | undefined = options && options.context;
-        if (localVarHttpContext === undefined) {
-            localVarHttpContext = new HttpContext();
-        }
-
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json'
-        ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
-        }
-
-        let responseType_: 'text' | 'json' | 'blob' = 'json';
-        if (localVarHttpHeaderAcceptSelected) {
-            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
-                responseType_ = 'text';
-            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
-                responseType_ = 'json';
-            } else {
-                responseType_ = 'blob';
-            }
-        }
-
-        let localVarPath = `/commerce/orgs/${this.configuration.encodeParam({name: "orgId", value: orgId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/carts/${this.configuration.encodeParam({name: "cartId", value: cartId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/items`;
-        return this.httpClient.request<GetCartByUserId201Response>('post', `${this.configuration.basePath}${localVarPath}`,
-            {
-                context: localVarHttpContext,
-                body: addProductItemsRequest,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
@@ -3667,6 +3263,90 @@ export class DefaultService {
             {
                 context: localVarHttpContext,
                 body: updateSubscriptionProductRequest,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Updating a Subscription Product Category.
+     * Updating a Subscription Product Category attributes (ex. name, description)
+     * @param orgId The identifier of the organization that the subscription product category belongs to.
+     * @param subscriptionProductCategoryId The identifier of the subscription product category.
+     * @param updateSubscriptionProductCategoryRequest 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public updateSubscriptionProductCategory(orgId: string, subscriptionProductCategoryId: string, updateSubscriptionProductCategoryRequest: UpdateSubscriptionProductCategoryRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<GetSubscriptionProductCategories200Response>;
+    public updateSubscriptionProductCategory(orgId: string, subscriptionProductCategoryId: string, updateSubscriptionProductCategoryRequest: UpdateSubscriptionProductCategoryRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpResponse<GetSubscriptionProductCategories200Response>>;
+    public updateSubscriptionProductCategory(orgId: string, subscriptionProductCategoryId: string, updateSubscriptionProductCategoryRequest: UpdateSubscriptionProductCategoryRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpEvent<GetSubscriptionProductCategories200Response>>;
+    public updateSubscriptionProductCategory(orgId: string, subscriptionProductCategoryId: string, updateSubscriptionProductCategoryRequest: UpdateSubscriptionProductCategoryRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<any> {
+        if (orgId === null || orgId === undefined) {
+            throw new Error('Required parameter orgId was null or undefined when calling updateSubscriptionProductCategory.');
+        }
+        if (subscriptionProductCategoryId === null || subscriptionProductCategoryId === undefined) {
+            throw new Error('Required parameter subscriptionProductCategoryId was null or undefined when calling updateSubscriptionProductCategory.');
+        }
+        if (updateSubscriptionProductCategoryRequest === null || updateSubscriptionProductCategoryRequest === undefined) {
+            throw new Error('Required parameter updateSubscriptionProductCategoryRequest was null or undefined when calling updateSubscriptionProductCategory.');
+        }
+
+        let localVarHeaders = this.defaultHeaders;
+
+        let localVarCredential: string | undefined;
+        // authentication (bearer) required
+        localVarCredential = this.configuration.lookupCredential('bearer');
+        if (localVarCredential) {
+            localVarHeaders = localVarHeaders.set('Authorization', 'Bearer ' + localVarCredential);
+        }
+
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json;v=1'
+            ];
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
+        }
+
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
+        }
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        let localVarPath = `/commerce/orgs/${this.configuration.encodeParam({name: "orgId", value: orgId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/subscription-product-categories/${this.configuration.encodeParam({name: "subscriptionProductCategoryId", value: subscriptionProductCategoryId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
+        return this.httpClient.request<GetSubscriptionProductCategories200Response>('put', `${this.configuration.basePath}${localVarPath}`,
+            {
+                context: localVarHttpContext,
+                body: updateSubscriptionProductCategoryRequest,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,

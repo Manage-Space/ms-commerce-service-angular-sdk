@@ -33,10 +33,6 @@ export interface ProductResponse {
      */
     productCategoryId: string;
     /**
-     * Payment provider ID
-     */
-    paymentProviderId: string;
-    /**
      * Time of creation
      */
     createdAt: string;

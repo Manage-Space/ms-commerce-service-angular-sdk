@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 import { ProductItemRequest } from './productItemRequest';
-import { SubscriptionProductItemRequest } from './subscriptionProductItemRequest';
 
 
 export interface BaseCategory { 
@@ -26,9 +25,5 @@ export interface BaseCategory {
      * Products to be created within the category.
      */
     items?: Array<ProductItemRequest>;
-    /**
-     * Subscription products to be created within the category.
-     */
-    subscriptionItems?: Array<SubscriptionProductItemRequest>;
 }
 

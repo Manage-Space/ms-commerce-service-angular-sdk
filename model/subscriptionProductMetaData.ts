@@ -11,14 +11,7 @@
  */
 
 
-export interface UpdateProductCategoryRequest { 
-    /**
-     * The name of the product category.
-     */
-    name?: string;
-    /**
-     * The display order of the product category.
-     */
-    displayOrder?: number;
+export interface SubscriptionProductMetaData { 
+    coverLevel?: number;
 }
 

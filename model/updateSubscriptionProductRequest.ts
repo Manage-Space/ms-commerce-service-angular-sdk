@@ -23,7 +23,7 @@ export interface UpdateSubscriptionProductRequest {
     /**
      * Product Category ID
      */
-    productCategoryId?: string;
+    subscriptionProductCategoryId?: string;
     /**
      * Image path for the subscription product
      */

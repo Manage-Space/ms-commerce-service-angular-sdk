@@ -23,7 +23,7 @@ export interface SubscriptionProductSiteResponse {
     /**
      * Product Category Id
      */
-    productCategoryId: string;
+    subscriptionProductCategoryId: string;
     /**
      * Identifier of subscription product.
      */

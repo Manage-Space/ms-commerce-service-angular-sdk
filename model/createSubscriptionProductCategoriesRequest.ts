@@ -9,16 +9,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { BaseCategory } from './baseCategory';
 
 
-export interface UpdateProductCategoryRequest { 
+export interface CreateSubscriptionProductCategoriesRequest { 
     /**
-     * The name of the product category.
+     * Subscription Product Categories + products
      */
-    name?: string;
-    /**
-     * The display order of the product category.
-     */
-    displayOrder?: number;
+    subscriptionProductCategories: Array<BaseCategory>;
 }
 
