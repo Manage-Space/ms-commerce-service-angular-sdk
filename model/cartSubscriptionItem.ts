@@ -20,5 +20,9 @@ export interface CartSubscriptionItem {
      * Subscription Product ID
      */
     subscriptionProductId?: string;
+    /**
+     * Metadata.
+     */
+    metaData?: object;
 }
 

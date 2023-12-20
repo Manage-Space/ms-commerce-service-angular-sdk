@@ -44,6 +44,10 @@ export interface CartSubscriptionItemResponse {
      * Total Price of Subscription Item
      */
     cartSubscriptionItemPrice: number;
+    /**
+     * Meta Data
+     */
+    metaData: object | null;
 }
 export namespace CartSubscriptionItemResponse {
 }
