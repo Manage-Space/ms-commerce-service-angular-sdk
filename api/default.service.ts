@@ -1566,7 +1566,7 @@ export class DefaultService {
     }
 
     /**
-     * Get carts
+     * Get carts.
      * Get carts for current user.
      * @param orgId The identifier of the organization.
      * @param siteId The identifier of the site.
