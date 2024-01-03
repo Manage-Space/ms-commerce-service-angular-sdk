@@ -21,6 +21,10 @@ export interface SubscriptionProductSiteResponse {
      */
     price: number;
     /**
+     * Currency code
+     */
+    currency: string;
+    /**
      * Product Category Id
      */
     subscriptionProductCategoryId: string;
