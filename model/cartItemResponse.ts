@@ -12,7 +12,6 @@
 import { ProductSiteResponse } from './productSiteResponse';
 import { CartItemStatus } from './cartItemStatus';
 import { ProductResponse } from './productResponse';
-import { CartItemTaxResponse } from './cartItemTaxResponse';
 
 
 export interface CartItemResponse { 
@@ -39,7 +38,6 @@ export interface CartItemResponse {
      */
     quantity: number;
     cartItemStatus: CartItemStatus;
-    cartItemTaxes: Array<CartItemTaxResponse>;
     /**
      * Total Price of Item(s) including Taxes
      */

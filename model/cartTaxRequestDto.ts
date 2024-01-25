@@ -11,12 +11,22 @@
  */
 
 
-export type CartStatus = 'active' | 'abandoned' | 'completed' | 'in_progress';
-
-export const CartStatus = {
-    Active: 'active' as CartStatus,
-    Abandoned: 'abandoned' as CartStatus,
-    Completed: 'completed' as CartStatus,
-    InProgress: 'in_progress' as CartStatus
-};
+export interface CartTaxRequestDto { 
+    /**
+     * Sales tax
+     */
+    name: string;
+    /**
+     * amount
+     */
+    amount: number;
+    /**
+     * amount
+     */
+    rate: number;
+    /**
+     * Tax description
+     */
+    description?: string;
+}
 

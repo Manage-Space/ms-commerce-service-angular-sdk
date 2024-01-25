@@ -14,6 +14,7 @@ import { CartFeeResponse } from './cartFeeResponse';
 import { CartItemStatus } from './cartItemStatus';
 import { CartSubscriptionItemResponse } from './cartSubscriptionItemResponse';
 import { CartItemResponse } from './cartItemResponse';
+import { CartTaxResponse } from './cartTaxResponse';
 
 
 export interface CartV2Response { 
@@ -45,6 +46,7 @@ export interface CartV2Response {
     cartFees: Array<CartFeeResponse>;
     cartItemsStatus: CartItemStatus;
     cartTotal: number;
+    cartTaxes: Array<CartTaxResponse>;
 }
 export namespace CartV2Response {
 }

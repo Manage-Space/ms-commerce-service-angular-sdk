@@ -35,6 +35,8 @@ import { CreateCartSubscriptionItems201Response } from '../model/createCartSubsc
 // @ts-ignore
 import { CreateCartSubscriptionItemsRequest } from '../model/createCartSubscriptionItemsRequest';
 // @ts-ignore
+import { CreateCartTaxesRequest } from '../model/createCartTaxesRequest';
+// @ts-ignore
 import { CreateCategoriesRequest } from '../model/createCategoriesRequest';
 // @ts-ignore
 import { CreateFeeRequest } from '../model/createFeeRequest';
@@ -82,6 +84,8 @@ import { InternalServerError500Response } from '../model/internalServerError500R
 import { NotFoundError404Response } from '../model/notFoundError404Response';
 // @ts-ignore
 import { UnauthorizedError401Response } from '../model/unauthorizedError401Response';
+// @ts-ignore
+import { UpdateCartTax201Response } from '../model/updateCartTax201Response';
 // @ts-ignore
 import { UpdateFeeRequest } from '../model/updateFeeRequest';
 // @ts-ignore
@@ -2752,6 +2756,94 @@ export class DefaultService {
         return this.httpClient.request<any>('delete', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Adding taxes to a cart.
+     * Adding taxes to a cart.
+     * @param orgId The identifier of the organization.
+     * @param siteId The identifier of the site.
+     * @param cartId The identifier of the cart.
+     * @param createCartTaxesRequest 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public updateCartTax(orgId: string, siteId: string, cartId: string, createCartTaxesRequest: CreateCartTaxesRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<UpdateCartTax201Response>;
+    public updateCartTax(orgId: string, siteId: string, cartId: string, createCartTaxesRequest: CreateCartTaxesRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpResponse<UpdateCartTax201Response>>;
+    public updateCartTax(orgId: string, siteId: string, cartId: string, createCartTaxesRequest: CreateCartTaxesRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpEvent<UpdateCartTax201Response>>;
+    public updateCartTax(orgId: string, siteId: string, cartId: string, createCartTaxesRequest: CreateCartTaxesRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<any> {
+        if (orgId === null || orgId === undefined) {
+            throw new Error('Required parameter orgId was null or undefined when calling updateCartTax.');
+        }
+        if (siteId === null || siteId === undefined) {
+            throw new Error('Required parameter siteId was null or undefined when calling updateCartTax.');
+        }
+        if (cartId === null || cartId === undefined) {
+            throw new Error('Required parameter cartId was null or undefined when calling updateCartTax.');
+        }
+        if (createCartTaxesRequest === null || createCartTaxesRequest === undefined) {
+            throw new Error('Required parameter createCartTaxesRequest was null or undefined when calling updateCartTax.');
+        }
+
+        let localVarHeaders = this.defaultHeaders;
+
+        let localVarCredential: string | undefined;
+        // authentication (bearer) required
+        localVarCredential = this.configuration.lookupCredential('bearer');
+        if (localVarCredential) {
+            localVarHeaders = localVarHeaders.set('Authorization', 'Bearer ' + localVarCredential);
+        }
+
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json;v=1'
+            ];
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
+        }
+
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
+        }
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        let localVarPath = `/commerce/orgs/${this.configuration.encodeParam({name: "orgId", value: orgId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/sites/${this.configuration.encodeParam({name: "siteId", value: siteId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/carts/${this.configuration.encodeParam({name: "cartId", value: cartId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/cart-taxes`;
+        return this.httpClient.request<UpdateCartTax201Response>('post', `${this.configuration.basePath}${localVarPath}`,
+            {
+                context: localVarHttpContext,
+                body: createCartTaxesRequest,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,

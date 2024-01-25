@@ -9,14 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { CartTaxResponse } from './cartTaxResponse';
 
 
-export type CartStatus = 'active' | 'abandoned' | 'completed' | 'in_progress';
-
-export const CartStatus = {
-    Active: 'active' as CartStatus,
-    Abandoned: 'abandoned' as CartStatus,
-    Completed: 'completed' as CartStatus,
-    InProgress: 'in_progress' as CartStatus
-};
+export interface UpdateCartTax201Response { 
+    data?: Array<CartTaxResponse>;
+    success?: boolean;
+    error?: object;
+}
 
